@@ -4,21 +4,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPokemons } from '../slices/pokeSlice'
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { Card } from './Card';
+import { pokemonTipos } from '../helpers/tipos';
 
 
 const ListaPokemones = () => {
   const [pokemonElegido, setpokemonElegido] = useState(null);
   const [lupa, setLupa] = useState(false);
 
+  const [tipo, setTipo] = useState("");
+
   const [pokemonBuscado, setPokemonBuscado] = useState('')
   const [pokemonFiltrado, setPokemonFiltrado] = useState([])
   const listaPokemones = useSelector((state) => state.pokemones.pokedex)
+  const estado = useSelector((state) => state.pokemones.status)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getPokemons())
   }, [])
 
   const listaFiltrada = () => {
+    
     const lista = listaPokemones
     let filtro = lista
     if (pokemonBuscado.trim() === "") {
@@ -26,36 +31,24 @@ const ListaPokemones = () => {
     } else {
       filtro = lista.filter((pokemon) => pokemon.data.name.toLowerCase().includes(pokemonBuscado.toLowerCase()))
     }
+
+    if (tipo !== "") {
+      filtro = filtro.filter((pokemon) => pokemon.data.types[0].type.name === tipo) }
     setPokemonFiltrado(filtro)
   }
+  console.log(listaPokemones)
+  const handleTipo = (e) => {
+    setTipo(e.target.value)
+  }
 
-  const pokemonTipos = [
-    { tipo: 'grass', color: 'emerald-200', color2: 'emerald-600' },
-    { tipo: 'poison', color: 'purple-200', color2: 'purple-600' },
-    { tipo: 'fire', color: 'red-200', color2: 'red-600' },
-    { tipo: 'flying', color: 'blue-200', color2: 'blue-600' },
-    { tipo: 'water', color: 'cyan-200', color2: 'cyan-600' },
-    { tipo: 'bug', color: 'green-200', color2: 'green-600' },
-    { tipo: 'normal', color: 'gray-200', color2: 'gray-600' },
-    { tipo: 'ground', color: 'yellow-200', color2: 'yellow-600' },
-    { tipo: 'fairy', color: 'pink-200', color2: 'pink-600' },
-    { tipo: 'electric', color: 'amber-200', color2: 'amber-600' },
-    { tipo: 'fighting', color: 'orange-200', color2: 'orange-600' },
-    { tipo: 'psychic', color: 'violet-200', color2: 'violet-600' },
-    { tipo: 'rock', color: 'stone-200', color2: 'stone-600' },
-    { tipo: 'ice', color: 'sky-200', color2: 'sky-600' },
-    { tipo: 'ghost', color: 'slate-200', color2: 'slate-600' },
-    { tipo: 'steel', color: 'neutral-200', color2: 'neutral-600' },
-    { tipo: 'dragon', color: 'indigo-200', color2: 'indigo-600' },
-    { tipo: 'dark', color: 'black-200', color2: 'black-600' },
-  ];
   const handleBuscar = (e) => {
     setPokemonBuscado(e.target.value)
+
   }
 
   useEffect(() => {
     listaFiltrada()
-  }, [pokemonBuscado])
+  }, [pokemonBuscado, tipo, listaPokemones])
 
   const formatearNombre = (nombre) => {
     return nombre.replace(/-/g, ' ')
@@ -64,10 +57,13 @@ const ListaPokemones = () => {
       .join(' ');
   }
 
+  if (estado === 'Cargando') {
+    return <div>Cargando...</div>
+  }
 
   return (
     <main className='font-mali'>
-      <BuscadorPokemon handleBuscar={handleBuscar} pokemon={pokemonBuscado} />
+      <BuscadorPokemon tipo={tipo} handleTipo={handleTipo} handleBuscar={handleBuscar} pokemon={pokemonBuscado} />
       <section className='grid grid-cols-4 gap-10 max-w-7xl mx-auto'>
 
 
