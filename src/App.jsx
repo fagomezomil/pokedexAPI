@@ -1,18 +1,11 @@
-import { HeaderPoke } from "./components/HeaderPoke"
-import ListaPokemones from "./components/ListaPokemones"
+import { HeaderPoke } from './components/HeaderPoke';
+import { ListaPokemones } from './components/ListaPokemones';
 
-
-function App() {
-  
-  
-
+export function App() {
   return (
     <>
-      <HeaderPoke/>
-      <ListaPokemones/>
-
+      <HeaderPoke />
+      <ListaPokemones />
     </>
-  )
+  );
 }
-
-export default App
