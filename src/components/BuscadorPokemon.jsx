@@ -34,7 +34,10 @@ export function BuscadorPokemon({ tipo, handleTipo, pokemon, handleBuscar }) {
         </select>
 
         {tipo !== '' && (
-          <button onClick={() => handleTipo('')}>Mostrar Todos</button>
+          <button 
+          onClick={() => handleTipo('')}
+          className='bg-neutral-400 font-bold text-white text-lg px-4 rounded-3xl ml-3 hover:text-red-500 hover:bg-white '
+          >Mostrar Todos</button>
         )}
       </form>
     </div>

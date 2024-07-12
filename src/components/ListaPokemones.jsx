@@ -36,7 +36,7 @@ export function ListaPokemones() {
         handleBuscar={handleBuscar}
         pokemon={pokemonBuscado}
       />
-      <section className='grid grid-cols-4 gap-10 max-w-7xl mx-auto'>
+      <section className='grid grid-cols-4 gap-10 max-w-7xl mx-auto mb-28'>
         {pokemonFiltrado.length > 0 ? (
           pokemonFiltrado.map((pokemon) => (
             <CardPokemon
