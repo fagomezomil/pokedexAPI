@@ -13,7 +13,7 @@ export const CardPokemon = ({
   return (
     <div
       className={`relative w-[100%] self-center ${
-        pokemonElegido === pokemon.id ? `col-span-3 row-span-1` : 'col-span-1'
+        pokemonElegido === pokemon.id ? `md:col-span-3 row-span-1` : 'col-span-1'
       }`}
       onClick={() => {
         if (pokemonElegido === pokemon.id) {
@@ -34,7 +34,7 @@ export const CardPokemon = ({
       <div className=''>
         <div
           className={`p-2 relative ${
-            pokemonElegido === pokemon.id ? 'grid  grid-cols-5' : ''
+            pokemonElegido === pokemon.id ? 'grid  md:grid-cols-5' : ''
           }`}
         >
           <span
@@ -47,24 +47,24 @@ export const CardPokemon = ({
                 : ''
             }
           ></span>
-          <div className='col-span-2 content-end'>
+          <div className='col-span-1 md:col-span-2 content-end'>
             <img
               src={pokemon.sprites.other.dream_world.front_default}
               alt=''
               className={`w-[320px] h-[320px]`}
             />
           </div>
-          <div className='col-span-3 content-end'>
+          <div className='md:col-span-3 content-end'>
             <h3
-              className={`font-light text-gray-400 text-4xl ${
-                pokemonElegido === pokemon.id ? 'text-7xl' : ''
+              className={`font-light text-gray-400 text-3xl ${
+                pokemonElegido === pokemon.id ? 'md:text-7xl' : ''
               }`}
             >
               #{pokemon.id}
             </h3>
             <h2
               className={`font-bold text-neutral-700 text-4xl content-end ${
-                pokemonElegido === pokemon.id ? `text-[90px] mt-7 mb-5` : ''
+                pokemonElegido === pokemon.id ? `text-5xl  lg:text-[90px] md:mt-7 md:mb-5` : ''
               }`}
             >
               {formatearNombre(pokemon.name)}
@@ -83,7 +83,7 @@ export const CardPokemon = ({
                   <button
                     key={tipo.type.name}
                     onClick={() => handleTipo(tipo.type.name)}
-                    className='relative w-fit bg-white text-gray-500 rounded-full px-8 py-2 text-lg font-semibold mt-4 mb-2 m-1 capitalize hover:bg-neutral-400 hover:text-white'
+                    className='relative w-fit bg-white text-gray-500 rounded-full px-5 py-2 text-lg font-semibold mt-4 mb-2 m-1 capitalize hover:bg-neutral-400 hover:text-white'
                   >
                     {tipo.type.name}
                   </button>
@@ -99,14 +99,14 @@ export const CardPokemon = ({
         >
           {pokemonElegido === pokemon.id && (
             <>
-              <div className='p-6 grid grid-cols-9'>
-                <p className='col-span-2 text-3xl uppercase text-neutral-400'>
+              <div className='p-6 grid md:grid-cols-9'>
+                <p className='col-span-1 md:col-span-2 text-3xl uppercase text-neutral-400'>
                   Altura:{' '}
                   <span className='text-5xl text-neutral-500'>
                     {pokemon.height}pm
                   </span>
                 </p>
-                <p className='col-span-2 text-3xl uppercase text-neutral-400'>
+                <p className='col-span-1 md:col-span-2 text-3xl uppercase text-neutral-400'>
                   Peso:{' '}
                   <span className='text-5xl text-neutral-500'>
                     {pokemon.weight}pk

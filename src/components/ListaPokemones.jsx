@@ -36,7 +36,7 @@ export function ListaPokemones() {
         handleBuscar={handleBuscar}
         pokemon={pokemonBuscado}
       />
-      <section className='grid grid-cols-4 gap-10 max-w-7xl mx-auto'>
+      <section className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto mb-[130px] p-3'>
         {pokemonFiltrado.length > 0 ? (
           pokemonFiltrado.map((pokemon) => (
             <CardPokemon
@@ -51,7 +51,7 @@ export function ListaPokemones() {
           ))
         ) : (
           <div className='col-span-4 mx-auto my-auto'>
-            <h1 className='text-6xl italic text-red-500 text-center'>
+            <h1 className='text-4xl md:text-6xl italic text-red-500 text-center p-4 md:p-16 '>
               No hay pokemones que coincidan con su búsqueda
             </h1>
           </div>
